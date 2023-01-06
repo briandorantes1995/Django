@@ -41,11 +41,7 @@ def monthly_challenge(request,month):
 
 
 def month_list(request):
-    list_items =""
     months = list(monthly_challenges.keys())
-    for month in months:
-        redirect_month = reverse("month_challenge",args=[month.capitalize()]) #/challenge
-        list_items += f"<li><a href=\"{redirect_month}\">{month.capitalize()}</a></li>"
-    
-    response_data =f"<ul>{list_items}</ul>"
-    return HttpResponse(response_data)
+    return render(request,"challenges/index.html",{
+        "months": months
+    })
